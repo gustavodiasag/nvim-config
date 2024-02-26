@@ -1,27 +1,29 @@
-vim.o.hlsearch = false
+local opt = vim.o
+
+opt.hlsearch = false
 
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.o.mouse = 'a'
+opt.mouse = 'a'
 
-vim.o.clipboard = 'unnamedplus'
+opt.clipboard = 'unnamedplus'
 
-vim.o.breakindent = true
+opt.breakindent = true
 
-vim.o.undofile = true
+opt.undofile = true
 
-vim.o.ignorecase = true
-vim.o.smartcase = true
+opt.ignorecase = true
+opt.smartcase = true
 
 vim.wo.signcolumn = 'yes'
 
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+opt.updatetime = 250
+opt.timeoutlen = 300
 
-vim.o.completeopt = 'menuone,noselect'
+opt.completeopt = 'menuone,noselect'
 
-vim.o.termguicolors = true
+opt.termguicolors = true
 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
