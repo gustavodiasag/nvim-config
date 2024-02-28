@@ -3,9 +3,11 @@ require 'user.launch'
 require 'user.options'
 require 'user.keymaps'
 
+-- General purpose plugins
 spec 'user.whichkey'
 spec 'user.telescope'
 spec 'user.colorscheme'
+spec 'user.cmp'
 
 -- LSṔ-related plugins
 spec 'user.lsp.mason'
