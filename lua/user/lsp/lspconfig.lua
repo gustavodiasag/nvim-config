@@ -59,6 +59,7 @@ function M.config()
 				telemetry = { enable = false },
 			},
 		},
+		marksman = { Markdown = {}, },
 	}
 
 	require("neodev").setup()
