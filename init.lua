@@ -8,6 +8,7 @@ spec('user.whichkey')
 spec('user.telescope')
 spec('user.colorscheme')
 spec('user.cmp')
+spec('user.comment')
 
 -- LSṔ-related plugins
 spec('user.lsp.mason')
