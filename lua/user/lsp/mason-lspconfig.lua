@@ -12,9 +12,10 @@ M.servers = {
 	'rust_analyzer',
 	'gopls',
 	'marksman',
+	'clangd',
 }
 
-function M.config()
+M.config = function()
 	require('mason').setup()
 
 	require('mason-lspconfig').setup({
