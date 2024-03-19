@@ -6,6 +6,7 @@ require('user.keymaps')
 -- General purpose plugins
 spec('user.whichkey')
 spec('user.telescope')
+spec('user.treesitter')
 spec('user.colorscheme')
 spec('user.cmp')
 spec('user.comment')
