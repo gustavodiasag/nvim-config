@@ -1,5 +1,5 @@
 local M = {
-	"folke/which-key.nvim",
+	'folke/which-key.nvim',
 	opts = {},
 }
 

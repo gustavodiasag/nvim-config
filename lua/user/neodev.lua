@@ -1,9 +1,9 @@
 local M = {
-	"folke/neodev.nvim",
+	'folke/neodev.nvim',
 }
 
-function M.config()
-	require("neodev").setup()
+M.config = function()
+	require('neodev').setup()
 end
 
 return M

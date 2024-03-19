@@ -1,5 +1,5 @@
 local M = {
-	"williamboman/mason.nvim",
+	'williamboman/mason.nvim',
 	config = true,
 }
 
