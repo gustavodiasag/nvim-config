@@ -1,24 +1,25 @@
 local M = {
-	'williamboman/mason-lspconfig.nvim',
+	"williamboman/mason-lspconfig.nvim",
 
 	depedencies = {
-		{ 'williamboman/mason.nvim', config = true },
-		{ 'j-hui/fidget.nvim', opts = {} },
+		{ "williamboman/mason.nvim", config = true },
+		{ "j-hui/fidget.nvim", opts = {} },
 	},
 }
 
 M.servers = {
-	'lua_ls',
-	'rust_analyzer',
-	'gopls',
-	'marksman',
-	'clangd',
+	"lua_ls",
+	"rust_analyzer",
+	"gopls",
+	"marksman",
+	"clangd",
+	"reason_ls",
 }
 
 M.config = function()
-	require('mason').setup()
+	require("mason").setup()
 
-	require('mason-lspconfig').setup({
+	require("mason-lspconfig").setup({
 		ensure_installed = M.servers,
 	})
 end
