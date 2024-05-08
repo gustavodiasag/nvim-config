@@ -19,7 +19,6 @@ M.config = function()
 			"vimdoc",
 			"vim",
 			"bash",
-			"reason",
 		},
 
 		-- Autoinstall languages that are not installed

@@ -11,6 +11,7 @@ spec("user.colorscheme")
 spec("user.cmp")
 spec("user.comment")
 spec("user.conform")
+spec("user.markdown")
 
 -- LSṔ-related plugins
 spec("user.lsp.mason")
