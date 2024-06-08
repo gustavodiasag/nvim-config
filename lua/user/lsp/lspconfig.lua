@@ -37,11 +37,6 @@ local on_attach = function(_, bufnr)
 	nmap('<leader>wl', function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, '[W]orkspace [L]ist Folders')
-
-	-- -- Formatting
-	-- vim.keymap.set('n', '<leader>f', function()
-	-- 	vim.lsp.buf.format({ async = true })
-	-- end, {})
 end
 
 M.capabilities = function()
