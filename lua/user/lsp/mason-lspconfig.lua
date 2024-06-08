@@ -12,8 +12,6 @@ M.servers = {
 	"rust_analyzer",
 	"gopls",
 	"marksman",
-	"clangd",
-	"reason_ls",
 }
 
 M.config = function()
