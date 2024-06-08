@@ -12,6 +12,7 @@ spec("user.cmp")
 spec("user.comment")
 spec("user.conform")
 spec("user.markdown")
+spec("user.oil")
 
 -- LSṔ-related plugins
 spec("user.lsp.mason")
