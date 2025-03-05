@@ -1,14 +1,14 @@
 return {
-  {
-    "nvim-lualine/lualine.nvim",
-    requires = { "nvim-tree/nvim-web-devicons", opt = true },
-    config = function ()
-      require("lualine").setup {
-        options = {
-          icons_enabled = true,
-          theme = "gruvbox",
-        },
-      }
-    end
-  },
+	{
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+		config = function()
+			require("lualine").setup({
+				options = {
+					icons_enabled = true,
+					theme = "zenbones",
+				},
+			})
+		end,
+	},
 }

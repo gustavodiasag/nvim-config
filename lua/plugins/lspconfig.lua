@@ -11,7 +11,7 @@ return { -- LSP Configuration & Plugins
 			-- Configures the current buffer when a file associated with an lsp is opened,.
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-				callback = function()
+				callback = function(event)
 					-- Defines mappings specific for LSP related items.
 					local map = function(keys, func)
 						vim.keymap.set("n", keys, func, {})
@@ -38,6 +38,14 @@ return { -- LSP Configuration & Plugins
 					map("K", vim.lsp.buf.hover)
 					-- Jump to declaration.
 					map("gD", vim.lsp.buf.declaration)
+
+					-- Inlay hint stuff
+					local client = vim.lsp.get_client_by_id(event.data.client_id)
+					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+						map("<leader>ih", function()
+							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+						end)
+					end
 				end,
 			})
 
@@ -47,8 +55,10 @@ return { -- LSP Configuration & Plugins
 			-- Enable the following language servers
 			local servers = {
 				clangd = {},
+				coq_lsp = {},
 				gopls = {},
 				rust_analyzer = {},
+				ts_ls = {},
 				lua_ls = {
 					settings = {
 						Lua = {
