@@ -27,15 +27,15 @@ keymap("n", "<leader>q", vim.diagnostic.setloclist, {})
 keymap("n", "<leader>nt", ":$tabnew<CR>")
 keymap("n", "<leader>ct", ":tabc<CR>")
 keymap("n", "<leader>tn", ":tabN<CR>")
-keymap("n", "<leader>tp", ":tabp<CR>")
--- tabnext	" go to the next tab page
+keymap("n", "<leader>tp", ":tabN<CR>")
+
 -- Open terminal at the bottom of the screen with a fixed height.
 keymap("n", "<leader>st", function()
-	vim.cmd.new()
-	vim.cmd.wincmd("J")
-	vim.api.nvim_win_set_height(0, 12)
-	vim.wo.winfixheight = true
-	vim.cmd.term()
+  vim.cmd.new()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 12)
+  vim.wo.winfixheight = true
+  vim.cmd.term()
 end)
 
 -- Exit terminal mode.

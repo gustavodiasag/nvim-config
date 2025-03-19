@@ -10,49 +10,49 @@ vim.g.markdown_recommended_style = 0
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-local opt = vim.opt
+local o = vim.opt
 
-opt.completeopt = "menu,menuone,noselect"
+o.completeopt = "menu,menuone,noselect"
 -- Enable highlighting of the current line.
-opt.cursorline = true
+o.cursorline = true
 -- Use spaces instead of tabs.
-opt.expandtab = true
--- Wrap lines at convenient points.
-opt.linebreak = true
--- Enable mouse mode.
-opt.mouse = "a"
--- Print line number.
-opt.number = true
--- Relatieve line numbers.
-opt.relativenumber = true
--- Round indent.
-opt.shiftround = true
--- Size of an indent.
-opt.shiftwidth = 2
--- Always sho the signcolumn, otherwise it would shift the text each time.
-opt.signcolumn = "yes"
+o.expandtab = true
 -- Insert indents automatically.
-opt.smartindent = true
--- Enable spell checking.
-opt.spell = false
--- Spell checking will be done for the below languages.
-opt.spelllang = { "en_us" }
+o.smartindent = true
 -- Number of spaces tabs count for.
-opt.tabstop = 2
+o.tabstop = 2
+-- Size of an indent.
+o.shiftwidth = 2
+-- Wrap lines at convenient points.
+o.linebreak = true
+-- Enable mouse mode.
+o.mouse = "a"
+-- Print line number.
+o.number = true
+-- Relatieve line numbers.
+o.relativenumber = true
+-- Round indent.
+o.shiftround = true
+-- Always sho the signcolumn, otherwise it would shift the text each time.
+o.signcolumn = "yes"
+-- Enable spell checking.
+o.spell = false
+-- Spell checking will be done for the below languages.
+o.spelllang = { "en_us" }
 -- Set light theme
-opt.background = "light"
+o.background = "light"
 -- True color support.
-opt.termguicolors = true
+o.termguicolors = true
 -- Save undo history to an undo file.
-opt.undofile = true
+o.undofile = true
 -- Disable line wrap.
-opt.wrap = false
+o.wrap = false
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
