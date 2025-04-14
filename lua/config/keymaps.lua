@@ -3,13 +3,6 @@ vim.g.maplocalleader = "\\"
 
 local keymap = vim.keymap.set
 
--- Easier split movement.
-keymap("n", "<leader>sj", "<C-w>s", {})
-keymap("n", "<leader>sl", "<C-w>v", {})
-keymap("n", "<C-j>", "<C-w>j", {})
-keymap("n", "<C-k>", "<C-w>k", {})
-keymap("n", "<C-l>", "<C-w>l", {})
-keymap("n", "<C-h>", "<C-w>h", {})
 -- Centered jumps.
 keymap("n", "<C-u>", "<C-u>zz", {})
 keymap("n", "<C-d>", "<C-d>zz", {})
@@ -23,11 +16,20 @@ keymap("n", "<leader>q", vim.diagnostic.setloclist, {})
 
 -- Window related keymaps.
 
+-- Easier split movement.
+keymap("n", "<leader>j", "<C-w>s", {})
+keymap("n", "<leader>l", "<C-w>v", {})
+keymap("n", "<C-j>", "<C-w>j", {})
+keymap("n", "<C-k>", "<C-w>k", {})
+keymap("n", "<C-l>", "<C-w>l", {})
+keymap("n", "<C-h>", "<C-w>h", {})
+
 -- Tab controls
-keymap("n", "<leader>nt", ":$tabnew<CR>")
-keymap("n", "<leader>ct", ":tabc<CR>")
-keymap("n", "<leader>tn", ":tabN<CR>")
-keymap("n", "<leader>tp", ":tabN<CR>")
+keymap("n", "<C-t>", ":$tabnew<CR>")
+-- Go to next tab
+keymap("n", "L", ":tabnext<CR>")
+-- Go to previous tab
+keymap("n", "H", ":tabprev<CR>")
 
 -- Open terminal at the bottom of the screen with a fixed height.
 keymap("n", "<leader>st", function()

@@ -1,11 +1,10 @@
 return {
   {
-    "zenbones-theme/zenbones.nvim",
-    dependencies = { "rktjmp/lush.nvim" },
+    "slugbyte/lackluster.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("zenbones")
+      vim.cmd.colorscheme("lackluster")
     end,
   },
 }

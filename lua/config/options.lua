@@ -47,6 +47,8 @@ o.termguicolors = true
 o.undofile = true
 -- Disable line wrap.
 o.wrap = false
+-- Custom tabline configuration.
+vim.opt.tabline = "%!v:lua.MyTabLine()"
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -56,3 +58,30 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+-- Custom tabline configuration.
+function MyTabLine()
+  local s = ""
+  for i = 1, vim.fn.tabpagenr("$") do
+    -- Select the highlighting
+    if i == vim.fn.tabpagenr() then
+      s = s .. "%#TabLineSel#"
+    else
+      s = s .. "%#TabLine#"
+    end
+    -- Set the tab page number
+    s = s .. "%" .. i .. "T"
+
+    -- Display just the filename (not full path)
+    local buflist = vim.fn.tabpagebuflist(i)
+    local winnr = vim.fn.tabpagewinnr(i)
+    local filename = vim.fn.fnamemodify(vim.fn.bufname(buflist[winnr]), ":t")
+    if filename == "" then
+      filename = "[No Name]"
+    end
+    s = s .. " " .. filename .. " "
+  end
+  -- Fill the rest of the tabline with TabLineFill and reset tab page nr
+  s = s .. "%#TabLineFill#%T"
+  return s
+end
