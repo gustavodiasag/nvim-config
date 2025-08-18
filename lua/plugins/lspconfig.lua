@@ -6,6 +6,7 @@ return { -- LSP Configuration & Plugins
       { "williamboman/mason.nvim", config = true },
       { "williamboman/mason-lspconfig.nvim" },
       { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+      { "jubnzv/virtual-types.nvim" },
     },
     config = function()
       -- Configures the current buffer when a file associated with an lsp is opened,.
@@ -54,7 +55,8 @@ return { -- LSP Configuration & Plugins
 
       -- Enable the following language servers
       local servers = {
-        -- rust_analyzer = {},
+        ruby_lsp = {},
+        rust_analyzer = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -68,29 +70,92 @@ return { -- LSP Configuration & Plugins
             },
           },
         },
+        ocamllsp = {
+          manual_install = true,
+
+          cmd = { "ocamllsp" },
+
+          settings = {
+            codelens = { enable = true },
+            inlayHints = { enable = true },
+            syntaxDocumentation = { enable = true },
+          },
+
+          filetypes = {
+            "ocaml",
+            "ocaml.menhir",
+            "ocaml.interface",
+            "ocaml.ocamllex",
+            "reason",
+            "dune",
+          },
+        },
+
+        hls = {
+          cmd = { "haskell-language-server-wrapper", "--lsp" },
+
+          filetypes = { "haskell", "lhaskell", "cabal" },
+        },
+
+        racket_langserver = {
+          cmd = { "racket", "--lib", "racket-langserver" },
+
+          filetypes = { "racket", "scheme" },
+        },
+
+        zls = {
+          manual_install = true,
+
+          cmd = { "/home/gustavodiasag/code/zig/zls/zig-out/bin/zls" },
+        },
       }
+
+      -- Removes definitions of installations that were set up to be manual.
+      local servers_to_install = vim.tbl_filter(function(key)
+        local t = servers[key]
+        if type(t) == "table" then
+          return not t.manual_install
+        else
+          return t
+        end
+      end, vim.tbl_keys(servers))
 
       -- Ensure the servers and tools above are installed
       require("mason").setup()
 
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "stylua", -- Used to format Lua code
-      })
+      local ensure_installed = {
+        "stylua",
+        "lua_ls",
+      }
+
+      vim.list_extend(ensure_installed, servers_to_install)
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-      require("mason-lspconfig").setup({
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
-      })
+      local lspconfig = require("lspconfig")
+
+      for name, config in pairs(servers) do
+        if config == true then
+          config = {}
+        end
+        config = vim.tbl_deep_extend("force", {}, {
+          capabilities = capabilities,
+        }, config)
+
+        lspconfig[name].setup(config)
+      end
+
+      -- require("mason-lspconfig").setup({
+      --   handlers = {
+      --     function(server_name)
+      --       local server = servers[server_name] or {}
+      --       -- This handles overriding only values explicitly passed
+      --       -- by the server configuration above. Useful when disabling
+      --       -- certain features of an LSP (for example, turning off formatting for tsserver)
+      --       server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+      --       require("lspconfig")[server_name].setup(server)
+      --     end,
+      --   },
+      -- })
     end,
   },
 }
