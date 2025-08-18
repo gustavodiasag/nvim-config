@@ -4,9 +4,25 @@ return {
     config = function()
       require("conform").setup({
         formatters_by_ft = {
-          lua = { "stylua" },
           go = { "gofmt" },
+          lua = { "stylua" },
+          ocaml = { "ocamlformat" },
           rust = { "rustfmt" },
+          racket = { "raco fmt" },
+          ruby = { "rubyfmt" },
+        },
+
+        formatters = {
+          ocamlformat = {
+            prepend_args = {
+              "--if-then-else",
+              "vertical",
+              "--break-cases",
+              "fit-or-vertical",
+              "--type-decl",
+              "sparse",
+            },
+          },
         },
       })
       -- Format on save.
