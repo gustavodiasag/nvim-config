@@ -33,7 +33,7 @@ o.number = true
 o.relativenumber = true
 -- Round indent.
 o.shiftround = true
--- Always sho the signcolumn, otherwise it would shift the text each time.
+-- Always show the signcolumn, otherwise it would shift the text each time.
 o.signcolumn = "yes"
 -- Enable spell checking.
 o.spell = false

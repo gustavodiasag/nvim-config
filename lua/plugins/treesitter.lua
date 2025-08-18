@@ -10,8 +10,13 @@ return {
 
       configs.setup({
         ensure_installed = {
-          "typescript",
+          "ocaml",
           "rust",
+          "haskell",
+          "racket",
+          "typescript",
+          "zig",
+          "ruby",
         },
         sync_install = false,
         highlight = { enable = true },
