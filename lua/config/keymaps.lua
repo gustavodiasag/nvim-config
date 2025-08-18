@@ -3,18 +3,19 @@ vim.g.maplocalleader = "\\"
 
 local keymap = vim.keymap.set
 
+-- Copy absolute path of current buffer to clipboard.
+keymap("n", "<leader>c", ':let @+=expand("%:p")<CR>')
 -- Centered jumps.
 keymap("n", "<C-u>", "<C-u>zz", {})
 keymap("n", "<C-d>", "<C-d>zz", {})
 keymap("n", "O", "zzO", {})
 keymap("n", "o", "zzo", {})
+
 -- Diagnostic keymaps.
 keymap("n", "[d", vim.diagnostic.goto_prev, {})
 keymap("n", "]d", vim.diagnostic.goto_next, {})
 keymap("n", "<leader>e", vim.diagnostic.open_float, {})
 keymap("n", "<leader>q", vim.diagnostic.setloclist, {})
-
--- Window related keymaps.
 
 -- Easier split movement.
 keymap("n", "<leader>j", "<C-w>s", {})
