@@ -5,6 +5,7 @@ local keymap = vim.keymap.set
 
 -- Copy absolute path of current buffer to clipboard.
 keymap("n", "<leader>c", ':let @+=expand("%:p")<CR>')
+
 -- Centered jumps.
 keymap("n", "<C-u>", "<C-u>zz", {})
 keymap("n", "<C-d>", "<C-d>zz", {})
@@ -31,6 +32,10 @@ keymap("n", "<C-t>", ":$tabnew<CR>")
 keymap("n", "L", ":tabnext<CR>")
 -- Go to previous tab
 keymap("n", "H", ":tabprev<CR>")
+
+-- Clipboard integration
+keymap("n", "<leader>c", "<cmd>w !fish_clipboard_copy<CR><CR>") -- Copy buffer into clipboard
+keymap("n", "<leader>p", "<cmd>read !fish_clipboard_paste<CR>") -- Paste clipboard into buffer
 
 -- Open terminal at the bottom of the screen with a fixed height.
 keymap("n", "<leader>st", function()

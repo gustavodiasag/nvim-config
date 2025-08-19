@@ -50,12 +50,23 @@ o.wrap = false
 -- Custom tabline configuration.
 vim.opt.tabline = "%!v:lua.MyTabLine()"
 
--- Highlight when yanking (copying) text
+-- Highlight when yanking (copying) text.
 vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
+  pattern = "*",
+  command = "silent! lua vim.highlight.on_yank({ timeout = 200 })",
+})
+
+-- Jump to last edit position on opening file.
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function(_)
+    if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+      -- Except for in git commit messages:
+      -- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+      if not vim.fn.expand("%:p"):find(".git", 1, true) then
+        vim.cmd('exe "normal! g\'\\""')
+      end
+    end
   end,
 })
 

@@ -97,11 +97,11 @@ return { -- LSP Configuration & Plugins
           filetypes = { "haskell", "lhaskell", "cabal" },
         },
 
-        racket_langserver = {
-          cmd = { "racket", "--lib", "racket-langserver" },
-
-          filetypes = { "racket", "scheme" },
-        },
+        -- racket_langserver = {
+        --   cmd = { "racket", "--lib", "racket-langserver" },
+        --
+        --   filetypes = { "racket", "scheme" },
+        -- },
 
         zls = {
           manual_install = true,
