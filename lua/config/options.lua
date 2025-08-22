@@ -47,8 +47,10 @@ o.termguicolors = true
 o.undofile = true
 -- Disable line wrap.
 o.wrap = false
+-- Colored column.
+o.colorcolumn = "80"
 -- Custom tabline configuration.
-vim.opt.tabline = "%!v:lua.MyTabLine()"
+o.tabline = "%!v:lua.MyTabLine()"
 
 -- Highlight when yanking (copying) text.
 vim.api.nvim_create_autocmd("TextYankPost", {
